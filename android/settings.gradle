@@ -1,0 +1,3 @@
+rootProject.name = 'kanakamusicRN_A'
+
+include ':app'
