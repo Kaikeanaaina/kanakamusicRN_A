@@ -1,53 +1,63 @@
+         /** <Icon name="chevron-right" size={20} style={styles.personMoreIcon} /> */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
  * @flow
  */
+ 'use strict'
+import React, { Component } from 'react'
+import { AppRegistry, StyleSheet, TabBarIOS} from 'react-native'
+import AppNavigator from './app/navigation/AppNavigator'
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-export default class kanakamusicRN_A extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
+class kanakamusicRN_A extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      selectedTab: 'tab1'
+    }
   }
+ render () {
+  return (
+    <TabBarIOS
+      selectedTab={this.state.selectedTab} >
+
+      <TabBarIOS.Item
+        selected={this.state.selectedTab === 'tab1'}
+        title={`TAB 1`}
+        onPress={() => this.setState({selectedTab: 'tab1'})} >
+        <AppNavigator
+          initialRoute={{ident:'PeopleIndex'}} />
+
+      </TabBarIOS.Item>
+
+      <TabBarIOS.Item
+        selected={this.state.selectedTab === 'tab2'}
+        title={`TAB 2`}
+        onPress={() => this.setState({selectedTab: 'tab2'})} >
+
+        <AppNavigator
+          initialRoute={{ident:'PersonShow',
+                        person: {firstName: 'jordan', lastName: 'leigh', roomNumber: 30}}} />
+
+      </TabBarIOS.Item>
+
+      <TabBarIOS.Item
+        selected={this.state.selectedTab === 'kai'}
+        title={`kai`}
+        onPress={() => this.setState({selectedTab: 'kai'})} >
+
+        <AppNavigator
+          initialRoute={{ident:'KaiLandingPage'}} />
+
+      </TabBarIOS.Item>
+
+    </TabBarIOS>
+
+  )
+ }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
 
 AppRegistry.registerComponent('kanakamusicRN_A', () => kanakamusicRN_A);
