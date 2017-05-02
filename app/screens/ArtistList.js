@@ -30,7 +30,7 @@ class ArtistList extends Component {
           <ListView
             style={{marginTop: 5}}
             dataSource={this.state.artists}
-            renderRow={(artist) => {return this._renderArtistRow(artist) }}/>
+            renderRow={(artist) => {return this._renderArtistRow(artist) }} />
         </View>
       </ViewContainer>
     )
