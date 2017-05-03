@@ -5,6 +5,8 @@ import { Text, View } from 'react-native'
 import ViewContainer from '../components/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground'
 
+import _ from 'lodash'
+
 class Song extends Component {
   constructor (props) {
     super(props)
@@ -17,7 +19,7 @@ class Song extends Component {
       <ViewContainer>
         <StatusBarBackground />
         <View>
-          <Text> this is the song page </Text>
+          <Text style={{textAlign:'center'}}> {`${_.capitalize(this.props.song.name)}`} </Text>
         </View>
       </ViewContainer>
     )
