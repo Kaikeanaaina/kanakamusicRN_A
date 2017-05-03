@@ -13,9 +13,9 @@ class AlbumList extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       albums: ds.cloneWithRows([
-        {name:'beginning'},
-        {name: 'all for you'},
-        {name: 'shores of waiehu'}
+        {title:'beginning'},
+        {title: 'all for you'},
+        {title: 'shores of waiehu'}
       ])
     }
     this._renderAlbumRow = this._renderAlbumRow.bind(this)
@@ -37,7 +37,7 @@ class AlbumList extends Component {
   _renderAlbumRow(album) {
     return (
       <TouchableOpacity style={{marginTop:2}} onPress={(event) => this._navigateToAlbumPage(album) }>
-        <Text> {`${_.capitalize(album.name)}`} </Text>
+        <Text> {`${_.capitalize(album.title)}`} </Text>
         <View style={{flex: 1}} />
       </TouchableOpacity>
     )

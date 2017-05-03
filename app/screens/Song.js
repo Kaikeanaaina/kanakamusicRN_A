@@ -19,7 +19,7 @@ class Song extends Component {
       <ViewContainer>
         <StatusBarBackground />
         <View>
-          <Text style={{textAlign:'center'}}> {`${_.capitalize(this.props.song.name)}`} </Text>
+          <Text style={{textAlign:'center'}}> {`${_.capitalize(this.props.song.title)}`} </Text>
         </View>
       </ViewContainer>
     )

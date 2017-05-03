@@ -12,7 +12,7 @@ class Album extends Component {
     return (
       <ViewContainer>
         <StatusBarBackground />
-        <Text style={{textAlign:'center'}}>{`${_.capitalize(this.props.album.name)}`}</Text>
+        <Text style={{textAlign:'center'}}>{`${_.capitalize(this.props.album.title)}`}</Text>
       </ViewContainer>
     )
   }

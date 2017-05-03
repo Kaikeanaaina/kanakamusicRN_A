@@ -12,9 +12,9 @@ class SongList extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       songs: ds.cloneWithRows([
-        {name: 'Shore of Waiehu'},
-        {name: 'Down in the Valley'},
-        {name: 'Old Fashion Touch'}
+        {title: 'Shore of Waiehu'},
+        {title: 'Down in the Valley'},
+        {title: 'Old Fashion Touch'}
       ])
     }
     this._renderSongRow = this._renderSongRow.bind(this)
@@ -37,7 +37,7 @@ class SongList extends Component {
   _renderSongRow(song) {
     return (
       <TouchableOpacity style={{marginTop:2}} onPress={(event) => this._navigateToSongPage(song) }>
-        <Text> {`${_.capitalize(song.name)}`} </Text>
+        <Text> {`${_.capitalize(song.title)}`} </Text>
         <View style={{flex: 1}} />
       </TouchableOpacity>
     )
