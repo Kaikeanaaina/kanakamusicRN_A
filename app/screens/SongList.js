@@ -6,6 +6,8 @@ import _ from 'lodash'
 import ViewContainer from '../components/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground'
 
+import axios from 'axios'
+
 class SongList extends Component {
   constructor (props) {
     super(props)
@@ -15,10 +17,20 @@ class SongList extends Component {
         {title: 'Shore of Waiehu'},
         {title: 'Down in the Valley'},
         {title: 'Old Fashion Touch'}
-      ])
+      ]),
+      theManySongs: ''
     }
     this._renderSongRow = this._renderSongRow.bind(this)
     this._navigateToSongPage = this._navigateToSongPage.bind(this)
+  }
+  componentDidMount () {
+    axios.get('http://localhost:5050/songs')
+    .then((res) => {
+      this.setState({
+        theManySongs: res.data
+      })
+      console.log(this.state.theManySongs)
+    })
   }
   render () {
     return (
