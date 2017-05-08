@@ -13,7 +13,12 @@ class AlbumList extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       albums: ds.cloneWithRows([
-        {title:'beginning'},
+        {
+          title:'beginning',
+          description: 'this is the description',
+          ArtistId: 'ArtistId',
+          RecordLabelId: 'RecordLabelId'
+        },
         {title: 'all for you'},
         {title: 'shores of waiehu'}
       ])
