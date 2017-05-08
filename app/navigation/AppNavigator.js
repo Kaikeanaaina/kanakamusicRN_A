@@ -11,7 +11,6 @@ import SongPage from '../screens/Song'
 import ArtistPage from '../screens/Artist'
 import AlbumPage from '../screens/Album'
 
-
 class AppNavigator extends Component {
   _renderScene(route, navigator) {
     var globalNavigatorProps = { navigator }
