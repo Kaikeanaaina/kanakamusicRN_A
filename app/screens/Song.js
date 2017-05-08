@@ -20,7 +20,7 @@ class Song extends Component {
         <StatusBarBackground />
         <ScrollView>
           <View >
-            <Text style={{textAlign:'center'}}> {`${_.capitalize(this.props.song.title)}`} </Text>
+            <Text style={{textAlign:'center', fontSize: 24}}> {`${_.capitalize(this.props.song.title)}`} </Text>
 
             <View>
               <Text> {this.props.song.ArtistId} </Text>
@@ -29,16 +29,16 @@ class Song extends Component {
             </View>
 
             <View>
-              <View>
-                <Text> {this.props.song.totalViews} </Text>
-                <Text> {this.props.song.weeklyViews} </Text>
-                <Text> {this.props.song.monthlyViews} </Text>
+              <View style={{flex:1, flexDirection:'row', justifyContent:'center', alignItems: 'center'}}>
+                <Text> WeeklyViews: {this.props.song.weeklyViews} </Text>
+                <Text> MonthlyViews: {this.props.song.monthlyViews} </Text>
+                <Text> TotalViews: {this.props.song.totalViews} </Text>
               </View>
 
-              <View>
-                <Text> {this.props.song.memberTotalViews} </Text>
-                <Text> {this.props.song.memberWeeklyViews} </Text>
-                <Text> {this.props.song.memberMonthlyViews} </Text>
+              <View style={{flex:1, flexDirection:'row', justifyContent:'center', alignItems: 'center'}}>
+                <Text> Mem.WVs: {this.props.song.memberWeeklyViews} </Text>
+                <Text> Mem.MVs: {this.props.song.memberMonthlyViews} </Text>
+                <Text> Mem.TVs: {this.props.song.memberTotalViews} </Text>
               </View>
             </View>
 
