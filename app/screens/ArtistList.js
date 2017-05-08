@@ -13,7 +13,16 @@ class ArtistList extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       artists: ds.cloneWithRows([
-        {name:'Ekolu'},
+        {
+          name:'Ponoa',
+          description: 'this is the description',
+          facebook: 'facebook',
+          twitter: 'twitter',
+          instagram: 'kanakamusic',
+          bookingPhoneNumber: '808-721-5497',
+          bookingEmail: 'kaikeanaaina@gmail.com',
+
+        },
         {name: 'Maoli'},
         {name: 'Opihi Pickers'},
         {name: 'Kapena'}
