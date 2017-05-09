@@ -22,7 +22,7 @@ class Song extends Component {
           <View >
             <Text style={{textAlign:'center', fontSize: 24}}> {`${_.capitalize(this.props.song.title)}`} </Text>
 
-            <View>
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
               <Text> {this.props.song.ArtistId} </Text>
               <Text> {this.props.song.AlbumId} </Text>
               <Text> {this.props.song.RecordLabelId} </Text>
