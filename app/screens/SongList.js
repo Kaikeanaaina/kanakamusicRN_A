@@ -63,30 +63,15 @@ class SongList extends Component {
     this._navigateToSongPage = this._navigateToSongPage.bind(this)
   }
   componentDidMount () {
-    // console.log(1111111)
-    // axios.get('http://localhost:5050/songs')
-    // .then((res) => {
-    //   this.setState({
-    //     songs: this.state.songs.cloneWithRows(res.data)
-    //   })
-    //   console.log(this.state.songs.cloneWithRows(res))
-    //   console.log(this.state.songs.cloneWithRows(res._dataBlob))
-    // })
-
-    // axios.get(Endpoint)
-    // .then((res) => {
-    //   return this.setState({
-    //     songs: this.state.songs.cloneWithRows(res.results.books)
-    //   })
-    // })
-
-    // fetch(Endpoint)
-    // .then((response) => response.json())
-    // .then((rjson) => {
-    //   this.setState({
-    //     songs: this.state.songs.cloneWithRows(rjson.results.books)
-    //   })
-    // })
+    if (this.props.AlbumId) {
+      //call all songs with the related AlbumId prop
+    } else if (this.props.ArtistId) {
+      //call all songs with the related ArtistId prop
+    } else if (this.props.RecordLabelId) {
+      //call all songs with the related RecordLabelId prop
+    } else {
+      //call all the songs
+    }
   }
   render () {
     return (
