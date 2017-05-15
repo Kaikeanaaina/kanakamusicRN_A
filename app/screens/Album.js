@@ -5,13 +5,16 @@ import { View, Text, ScrollView } from 'react-native'
 import StatusBarBackground from '../components/StatusBarBackground'
 import ViewContainer from '../components/ViewContainer'
 
+import SongList from './SongList'
+
 import _ from 'lodash'
 
 class Album extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      value: ''
+      value: '',
+      songs: []
     }
   }
   render () {
@@ -34,7 +37,8 @@ class Album extends Component {
             </View>
 
             <View style={{marginTop: 10}}>
-              <Text> this is the song list</Text>
+              <Text> SONG LIST</Text>
+              <SongList />
             </View>
           </View>
         </ScrollView>
