@@ -26,6 +26,15 @@ class AlbumList extends Component {
     this._renderAlbumRow = this._renderAlbumRow.bind(this)
     this._navigateToAlbumPage = this._navigateToAlbumPage.bind(this)
   }
+  componentDidMount () {
+    if (this.props.ArtistId) {
+      //call all albums with the related ArtistId prop
+    } else if (this.props.RecordLabelId) {
+      //call all albums with the related RecordLabel prop
+    } else {
+      //call all albums
+    }
+  }
   render () {
     return (
       <ViewContainer>
