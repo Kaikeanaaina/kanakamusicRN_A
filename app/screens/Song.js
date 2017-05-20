@@ -14,6 +14,9 @@ class Song extends Component {
       value: ''
     }
   }
+  componentDidMount () {
+    console.log(1111111, this.props.song)
+  }
   render () {
     return (
       <ViewContainer>
@@ -43,6 +46,46 @@ class Song extends Component {
             </View>
 
             <View style={{marginTop:5}}>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord1} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric1} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord2} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric2} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord3} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric3} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord4} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric4} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord5} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric5} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord6} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric6} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord7} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric7} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord8} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric8} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord9} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric9} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord10} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric10} </Text>
+              </View>
               <View style={style.chordsAndLyricsContainer}>
                 <Text style={style.chordsAndLyrics} > {this.props.song.chord11} </Text>
                 <Text style={style.chordsAndLyrics} > {this.props.song.lyric11} </Text>
@@ -79,9 +122,53 @@ class Song extends Component {
                 <Text style={style.chordsAndLyrics} > {this.props.song.chord19} </Text>
                 <Text style={style.chordsAndLyrics} > {this.props.song.lyric19} </Text>
               </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord20} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric20} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord21} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric21} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord22} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric22} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord23} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric23} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord24} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric24} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord25} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric25} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord26} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric26} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord27} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric27} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord28} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric28} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord29} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric29} </Text>
+              </View>
+              <View style={style.chordsAndLyricsContainer}>
+                <Text style={style.chordsAndLyrics} > {this.props.song.chord30} </Text>
+                <Text style={style.chordsAndLyrics} > {this.props.song.lyric30} </Text>
+              </View>
             </View>
 
-            <Text style={{marginTop: 20}}> {this.props.song.description} </Text>
+            <Text style={{marginBottom: 100}}> {this.props.song.description} </Text>
           </View>
         </ScrollView>
       </ViewContainer>
