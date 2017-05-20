@@ -6,34 +6,28 @@ import ViewContainer from '../components/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground'
 
 import _ from 'lodash'
+import axios from 'axios'
 
 class AlbumList extends Component {
   constructor (props) {
     super(props)
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      albums: ds.cloneWithRows([
-        {
-          title:'beginning',
-          description: 'this is the description',
-          ArtistId: 'ArtistId',
-          RecordLabelId: 'RecordLabelId'
-        },
-        {title: 'all for you'},
-        {title: 'shores of waiehu'}
-      ])
+      albums: ds.cloneWithRows([])
     }
     this._renderAlbumRow = this._renderAlbumRow.bind(this)
     this._navigateToAlbumPage = this._navigateToAlbumPage.bind(this)
   }
   componentDidMount () {
-    if (this.props.ArtistId) {
-      //call all albums with the related ArtistId prop
-    } else if (this.props.RecordLabelId) {
-      //call all albums with the related RecordLabel prop
-    } else {
-      //call all albums
-    }
+    axios.get(`http://localhost:5050/albums/consumers/`)
+      .then((res) => {
+        this.setState({
+          albums: this.state.albums.cloneWithRows(res.data)
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+      })
   }
   render () {
     return (
@@ -41,8 +35,9 @@ class AlbumList extends Component {
         <StatusBarBackground />
         <View>
           <ListView
-            style={{marginTop: 5}}
+            style={{marginTop: 5, height: 500}}
             dataSource={this.state.albums}
+            enableEmptySections={true}
             renderRow={(album) => {return this._renderAlbumRow(album) }} />
         </View>
       </ViewContainer>
@@ -51,7 +46,7 @@ class AlbumList extends Component {
   _renderAlbumRow(album) {
     return (
       <TouchableOpacity style={{marginTop:2}} onPress={(event) => this._navigateToAlbumPage(album) }>
-        <Text> {`${_.capitalize(album.title)}`} </Text>
+        <Text style={{fontSize: 24}} > {`${_.capitalize(album.title)}`} </Text>
         <View style={{flex: 1}} />
       </TouchableOpacity>
     )
