@@ -6,30 +6,33 @@ import ViewContainer from '../components/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground'
 
 import _ from 'lodash'
+import axios from 'axios'
+
+// this.setState({
+//   userDatasource: this.state.userDatasource.cloneWithRows(response)
+// })
+
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 class ArtistList extends Component {
   constructor (props) {
     super(props)
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      artists: ds.cloneWithRows([
-        {
-          name:'Ponoa',
-          description: 'this is the description',
-          facebook: 'facebook',
-          twitter: 'twitter',
-          instagram: 'kanakamusic',
-          bookingPhoneNumber: '808-721-5497',
-          bookingEmail: 'kaikeanaaina@gmail.com',
-
-        },
-        {name: 'Maoli'},
-        {name: 'Opihi Pickers'},
-        {name: 'Kapena'}
-      ])
+      artists: ds.cloneWithRows([])
     }
     this._renderArtistRow = this._renderArtistRow.bind(this)
     this._navigateToArtistPage = this._navigateToArtistPage.bind(this)
+  }
+  componentWillMount () {
+    axios.get(`http://localhost:5050/artists/consumers/`)
+      .then((res) => {
+        this.setState({
+          artists: this.state.artists.cloneWithRows(res.data)
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+      })
   }
   render () {
     return (
@@ -37,8 +40,9 @@ class ArtistList extends Component {
         <StatusBarBackground />
         <View>
           <ListView
-            style={{marginTop: 5}}
+            style={{marginTop: 5, height: 500}}
             dataSource={this.state.artists}
+            enableEmptySections={true}
             renderRow={(artist) => {return this._renderArtistRow(artist) }} />
         </View>
       </ViewContainer>
@@ -48,7 +52,7 @@ class ArtistList extends Component {
   _renderArtistRow(artist) {
     return (
       <TouchableOpacity style={{marginTop:2}} onPress={(event) => this._navigateToArtistPage(artist) }>
-        <Text> {`${_.capitalize(artist.name)}`}</Text>
+        <Text style={{fontSize: 24}} > {`${_.capitalize(artist.name)}`}</Text>
         <View style={{flex:1}} />
       </TouchableOpacity>
     )
