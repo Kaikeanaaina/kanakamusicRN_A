@@ -14,9 +14,6 @@ class Song extends Component {
       value: ''
     }
   }
-  componentDidMount () {
-    console.log(1111111, this.props.song)
-  }
   render () {
     return (
       <ViewContainer>
