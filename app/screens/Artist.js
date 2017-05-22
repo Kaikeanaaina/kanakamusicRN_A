@@ -52,12 +52,10 @@ class Artist extends Component {
               </View>
 
               <View style={{marginTop: 10}}>
-                <Text>ALBUM LIST</Text>
                 <AlbumList ArtistId={this.props.artist.id} navigator={this.props.navigator} />
               </View>
 
               <View style={{marginTop: 10}}>
-                <Text>SONG LIST</Text>
                 <SongList ArtistId={this.props.artist.id} navigator={this.props.navigator} />
               </View>
 

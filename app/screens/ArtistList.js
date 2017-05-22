@@ -35,8 +35,9 @@ class ArtistList extends Component {
       <ViewContainer>
         <StatusBarBackground />
         <View>
+          <Text style={{textAlign:'center', fontSize:24}} > ArtistList </Text>
           <ListView
-            style={{marginTop: 5, height: 250}}
+            style={{paddingBottom: 30}}
             dataSource={this.state.artists}
             enableEmptySections={true}
             renderRow={(artist) => {return this._renderArtistRow(artist) }} />

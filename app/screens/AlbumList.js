@@ -46,8 +46,9 @@ class AlbumList extends Component {
       <ViewContainer>
         <StatusBarBackground />
         <View>
+          <Text style={{textAlign:'center', fontSize:24}} > AlbumList </Text>
           <ListView
-            style={{marginTop: 5, height: 250}}
+            style={{paddingBottom: 30}}
             dataSource={this.state.albums}
             enableEmptySections={true}
             renderRow={(album) => {return this._renderAlbumRow(album) }} />

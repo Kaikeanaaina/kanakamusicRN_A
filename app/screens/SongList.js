@@ -56,8 +56,9 @@ class SongList extends Component {
       <ViewContainer>
         <View>
           <StatusBarBackground />
+          <Text style={{textAlign:'center', fontSize:24}} > SongList </Text>
           <ListView
-            style={{marginTop: 5, height: 250}}
+            style={{paddingBottom: 30}}
             dataSource={this.state.songs}
             renderRow={(song) => {return this._renderSongRow(song) }}
             enableEmptySections={true} />
