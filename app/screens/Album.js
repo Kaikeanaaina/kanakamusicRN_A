@@ -13,7 +13,6 @@ class Album extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      value: '',
       songs: []
     }
   }
@@ -38,7 +37,7 @@ class Album extends Component {
 
             <View style={{marginTop: 10}}>
               <Text> SONG LIST</Text>
-              <SongList />
+              <SongList AlbumId={this.props.album.id} navigator={this.props.navigator}/>
             </View>
           </View>
         </ScrollView>
