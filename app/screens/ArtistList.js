@@ -8,10 +8,6 @@ import StatusBarBackground from '../components/StatusBarBackground'
 import _ from 'lodash'
 import axios from 'axios'
 
-// this.setState({
-//   userDatasource: this.state.userDatasource.cloneWithRows(response)
-// })
-
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 class ArtistList extends Component {
@@ -25,14 +21,14 @@ class ArtistList extends Component {
   }
   componentWillMount () {
     axios.get(`http://localhost:5050/artists/consumers/`)
-      .then((res) => {
-        this.setState({
-          artists: this.state.artists.cloneWithRows(res.data)
-        })
+    .then((res) => {
+      this.setState({
+        artists: this.state.artists.cloneWithRows(res.data)
       })
-      .catch((error) => {
-        console.log('axios error', error)
-      })
+    })
+    .catch((error) => {
+      console.log('axios error', error)
+    })
   }
   render () {
     return (
@@ -40,7 +36,7 @@ class ArtistList extends Component {
         <StatusBarBackground />
         <View>
           <ListView
-            style={{marginTop: 5, height: 500}}
+            style={{marginTop: 5, height: 250}}
             dataSource={this.state.artists}
             enableEmptySections={true}
             renderRow={(artist) => {return this._renderArtistRow(artist) }} />
