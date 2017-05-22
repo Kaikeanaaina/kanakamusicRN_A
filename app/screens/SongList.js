@@ -18,8 +18,9 @@ class SongList extends Component {
     this._renderSongRow = this._renderSongRow.bind(this)
     this._navigateToSongPage = this._navigateToSongPage.bind(this)
   }
-  componentWillMount () {
-    axios.get(`http://localhost:5050/songs/consumers/`)
+  componentDidMount () {
+    if (this.props.ArtistId) {
+      axios.get(`http://localhost:5050/songs/consumers/ByArtistId/${this.props.ArtistId}`)
       .then((res) => {
         this.setState({
           songs: this.state.songs.cloneWithRows(res.data)
@@ -28,6 +29,27 @@ class SongList extends Component {
       .catch((error) => {
         console.log('axios error', error)
       })
+    } else if (this.props.AlbumId) {
+      axios.get(`http://localhost:5050/songs/consumers/ByAlbumId/${this.props.AlbumId}`)
+      .then((res) => {
+        this.setState({
+          songs: this.state.songs.cloneWithRows(res.data)
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+      })
+    } else {
+      axios.get(`http://localhost:5050/songs/consumers/`)
+      .then((res) => {
+        this.setState({
+          songs: this.state.songs.cloneWithRows(res.data)
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+      })
+    }
   }
   render () {
     return (
@@ -35,7 +57,7 @@ class SongList extends Component {
         <View>
           <StatusBarBackground />
           <ListView
-            style={{marginTop: 5, height: 500}}
+            style={{marginTop: 5, height: 250}}
             dataSource={this.state.songs}
             renderRow={(song) => {return this._renderSongRow(song) }}
             enableEmptySections={true} />
