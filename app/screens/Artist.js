@@ -8,6 +8,7 @@ import ViewContainer from '../components/ViewContainer'
 import AlbumList from './AlbumList'
 import SongList from './SongList'
 
+import axios from 'axios'
 import _ from 'lodash'
 
 class Artist extends Component {
@@ -52,12 +53,12 @@ class Artist extends Component {
 
               <View style={{marginTop: 10}}>
                 <Text>ALBUM LIST</Text>
-                <AlbumList />
+                <AlbumList ArtistId={this.props.artist.id} navigator={this.props.navigator} />
               </View>
 
               <View style={{marginTop: 10}}>
                 <Text>SONG LIST</Text>
-                <SongList />
+                <SongList ArtistId={this.props.artist.id} navigator={this.props.navigator} />
               </View>
 
             </View>
