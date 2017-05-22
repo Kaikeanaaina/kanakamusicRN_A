@@ -19,7 +19,8 @@ class AlbumList extends Component {
     this._navigateToAlbumPage = this._navigateToAlbumPage.bind(this)
   }
   componentDidMount () {
-    axios.get(`http://localhost:5050/albums/consumers/`)
+    if (this.props.ArtistId) {
+      axios.get(`http://localhost:5050/albums/consumers/ByArtistId/${this.props.ArtistId}`)
       .then((res) => {
         this.setState({
           albums: this.state.albums.cloneWithRows(res.data)
@@ -28,6 +29,17 @@ class AlbumList extends Component {
       .catch((error) => {
         console.log('axios error', error)
       })
+    } else {
+      axios.get(`http://localhost:5050/albums/consumers/`)
+      .then((res) => {
+        this.setState({
+          albums: this.state.albums.cloneWithRows(res.data)
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+      })
+    }
   }
   render () {
     return (
@@ -35,7 +47,7 @@ class AlbumList extends Component {
         <StatusBarBackground />
         <View>
           <ListView
-            style={{marginTop: 5, height: 500}}
+            style={{marginTop: 5, height: 250}}
             dataSource={this.state.albums}
             enableEmptySections={true}
             renderRow={(album) => {return this._renderAlbumRow(album) }} />
