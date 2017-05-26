@@ -8,6 +8,25 @@ import StatusBarBackground from '../components/StatusBarBackground'
 import _ from 'lodash'
 import axios from 'axios'
 
+const Styles = {
+  ArtistListHeader: {
+    textAlign:'center',
+    fontSize: 24
+  },
+  ArtistListListView: {
+    paddingBottom: 30
+  },
+  IndividualArtistContainer: {
+    paddingBottom: 20,
+    paddingTop: 20,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1
+  },
+  IndividualArtistText : {
+    fontSize: 24
+  }
+}
+
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 class ArtistList extends Component {
@@ -35,9 +54,9 @@ class ArtistList extends Component {
       <ViewContainer>
         <StatusBarBackground />
         <View>
-          <Text style={{textAlign:'center', fontSize:24}} > ArtistList </Text>
+          <Text style={Styles.ArtistListHeader} > ArtistList </Text>
           <ListView
-            style={{paddingBottom: 30}}
+            style={Styles.ArtistListListView}
             dataSource={this.state.artists}
             enableEmptySections={true}
             renderRow={(artist) => {return this._renderArtistRow(artist) }} />
@@ -48,10 +67,12 @@ class ArtistList extends Component {
 
   _renderArtistRow(artist) {
     return (
-      <TouchableOpacity style={{marginTop:2}} onPress={(event) => this._navigateToArtistPage(artist) }>
-        <Text style={{fontSize: 24}} > {`${_.capitalize(artist.name)}`}</Text>
-        <View style={{flex:1}} />
-      </TouchableOpacity>
+      <View>
+        <TouchableOpacity style={Styles.IndividualArtistContainer} onPress={(event) => this._navigateToArtistPage(artist) }>
+          <Text style={Styles.IndividualArtistText} > {`${_.capitalize(artist.name)}`}</Text>
+          <View style={{flex:1}} />
+        </TouchableOpacity>
+      </View>
     )
   }
 
