@@ -8,6 +8,25 @@ import StatusBarBackground from '../components/StatusBarBackground'
 import _ from 'lodash'
 import axios from 'axios'
 
+const Styles = {
+  AlbumListHeader: {
+    textAlign:'center',
+    fontSize: 24
+  },
+  AlbumListListView: {
+    paddingBottom: 30
+  },
+  IndividualAlbumContainer: {
+    paddingBottom: 20,
+    paddingTop: 20,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1
+  },
+  IndividualAlbumText : {
+    fontSize: 24
+  }
+}
+
 class AlbumList extends Component {
   constructor (props) {
     super(props)
@@ -46,9 +65,9 @@ class AlbumList extends Component {
       <ViewContainer>
         <StatusBarBackground />
         <View>
-          <Text style={{textAlign:'center', fontSize:24}} > AlbumList </Text>
+          <Text style={Styles.AlbumListHeader} > AlbumList </Text>
           <ListView
-            style={{paddingBottom: 30}}
+            style={Styles.AlbumListListView}
             dataSource={this.state.albums}
             enableEmptySections={true}
             renderRow={(album) => {return this._renderAlbumRow(album) }} />
@@ -58,10 +77,12 @@ class AlbumList extends Component {
   }
   _renderAlbumRow(album) {
     return (
-      <TouchableOpacity style={{marginTop:2}} onPress={(event) => this._navigateToAlbumPage(album) }>
-        <Text style={{fontSize: 24}} > {`${_.capitalize(album.title)}`} </Text>
-        <View style={{flex: 1}} />
-      </TouchableOpacity>
+      <View>
+        <TouchableOpacity style={Styles.IndividualAlbumContainer} onPress={(event) => this._navigateToAlbumPage(album) }>
+          <Text style={Styles.IndividualAlbumText} > {`${_.capitalize(album.title)}`} </Text>
+          <View style={{flex: 1}} />
+        </TouchableOpacity>
+      </View>
     )
   }
   _navigateToAlbumPage (album) {
