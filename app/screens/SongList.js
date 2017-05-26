@@ -8,6 +8,25 @@ import StatusBarBackground from '../components/StatusBarBackground'
 
 import axios from 'axios'
 
+const Styles = {
+  SongListHeader: {
+    textAlign:'center',
+    fontSize: 24
+  },
+  SongListListView: {
+    paddingBottom: 30
+  },
+  IndividualSongContainer: {
+    paddingBottom: 20,
+    paddingTop: 20,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1
+  },
+  IndividualSongText : {
+    fontSize: 24
+  }
+}
+
 class SongList extends Component {
   constructor (props) {
     super(props)
@@ -56,9 +75,9 @@ class SongList extends Component {
       <ViewContainer>
         <View>
           <StatusBarBackground />
-          <Text style={{textAlign:'center', fontSize:24}} > SongList </Text>
+          <Text style={Styles.SongListHeader} > SongList </Text>
           <ListView
-            style={{paddingBottom: 30}}
+            style={Styles.SongListListView}
             dataSource={this.state.songs}
             renderRow={(song) => {return this._renderSongRow(song) }}
             enableEmptySections={true} />
@@ -69,10 +88,12 @@ class SongList extends Component {
 
   _renderSongRow(song) {
     return (
-      <TouchableOpacity style={{marginTop:2}} onPress={(event) => this._navigateToSongPage(song) }>
-        <Text style={{fontSize: 24}}> {`${_.capitalize(song.title)}`} </Text>
-        <View style={{flex: 5}} />
-      </TouchableOpacity>
+      <View >
+        <TouchableOpacity style={Styles.IndividualSongContainer} onPress={(event) => this._navigateToSongPage(song) }>
+          <Text style={Styles.IndividualSongText}> {`${_.capitalize(song.title)}`} </Text>
+          <View style={{flex: 5}} />
+        </TouchableOpacity>
+      </View>
     )
   }
 
