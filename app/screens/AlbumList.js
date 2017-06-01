@@ -19,6 +19,7 @@ const Styles = {
   IndividualAlbumContainer: {
     paddingBottom: 20,
     paddingTop: 20,
+    paddingLeft: 20,
     borderBottomColor: 'black',
     borderBottomWidth: 1
   },
@@ -79,8 +80,10 @@ class AlbumList extends Component {
     return (
       <View>
         <TouchableOpacity style={Styles.IndividualAlbumContainer} onPress={(event) => this._navigateToAlbumPage(album) }>
-          <Text style={Styles.IndividualAlbumText} > {`${_.capitalize(album.title)}`} </Text>
-          <View style={{flex: 1}} />
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingRight: 30}} >
+            <Text style={Styles.IndividualAlbumText} > {`${_.capitalize(album.title)}`} </Text>
+            <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+          </View>
         </TouchableOpacity>
       </View>
     )

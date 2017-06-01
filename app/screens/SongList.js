@@ -19,8 +19,12 @@ const Styles = {
   IndividualSongContainer: {
     paddingBottom: 20,
     paddingTop: 20,
+    paddingLeft: 20,
     borderBottomColor: 'black',
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingRight: 30
   },
   IndividualSongText : {
     fontSize: 24
@@ -90,8 +94,21 @@ class SongList extends Component {
     return (
       <View >
         <TouchableOpacity style={Styles.IndividualSongContainer} onPress={(event) => this._navigateToSongPage(song) }>
-          <Text style={Styles.IndividualSongText}> {`${_.capitalize(song.title)}`} </Text>
-          <View style={{flex: 5}} />
+
+          <View style={{flexDirection: 'column'}}>
+            <View>
+              <Text style={Styles.IndividualSongText}> {`${_.capitalize(song.title)}`} </Text>
+            </View>
+
+            <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+              <Text>Artist</Text>
+              <View style={{width:10}} />
+              <Text>Album</Text>
+            </View>
+          </View>
+
+          <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+
         </TouchableOpacity>
       </View>
     )

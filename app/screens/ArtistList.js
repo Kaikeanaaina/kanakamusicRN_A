@@ -19,6 +19,7 @@ const Styles = {
   IndividualArtistContainer: {
     paddingBottom: 20,
     paddingTop: 20,
+    paddingLeft: 20,
     borderBottomColor: 'black',
     borderBottomWidth: 1
   },
