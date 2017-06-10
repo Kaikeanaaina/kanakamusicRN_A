@@ -1,7 +1,7 @@
 'use strict'
 
 import React, { Component } from 'react'
-import { Text, View, ListView, Navigator, TouchableOpacity} from 'react-native'
+import { Text, View, ListView, Navigator, TouchableOpacity, RefreshControl} from 'react-native'
 import ViewContainer from '../components/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground'
 
@@ -33,10 +33,12 @@ class AlbumList extends Component {
     super(props)
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      albums: ds.cloneWithRows([])
+      albums: ds.cloneWithRows([]),
+      refreshing: false
     }
     this._renderAlbumRow = this._renderAlbumRow.bind(this)
     this._navigateToAlbumPage = this._navigateToAlbumPage.bind(this)
+    this._onRefresh = this._onRefresh.bind(this)
   }
   componentDidMount () {
     if (this.props.ArtistId) {
@@ -61,6 +63,34 @@ class AlbumList extends Component {
       })
     }
   }
+  _onRefresh () {
+    this.setState({refreshing: true})
+    if (this.props.ArtistId) {
+      axios.get(`http://localhost:5050/albums/consumers/ByArtistId/${this.props.ArtistId}`)
+      .then((res) => {
+        this.setState({
+          albums: this.state.albums.cloneWithRows(res.data),
+          refreshing: false
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+        this.setState({refreshing: false})
+      })
+    } else {
+      axios.get(`http://localhost:5050/albums/consumers/`)
+      .then((res) => {
+        this.setState({
+          albums: this.state.albums.cloneWithRows(res.data),
+          refreshing: false
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+        this.setState({refreshing: false})
+      })
+    }
+  }
   render () {
     return (
       <ViewContainer>
@@ -71,6 +101,12 @@ class AlbumList extends Component {
             style={Styles.AlbumListListView}
             dataSource={this.state.albums}
             enableEmptySections={true}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+              />
+            }
             renderRow={(album) => {return this._renderAlbumRow(album) }} />
         </View>
       </ViewContainer>

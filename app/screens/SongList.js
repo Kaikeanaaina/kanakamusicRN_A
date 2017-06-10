@@ -1,7 +1,7 @@
 'use strict'
 
 import React, { Component } from 'react'
-import { Text, View, ListView, TouchableOpacity, Navigator } from 'react-native'
+import { Text, View, ListView, TouchableOpacity, Navigator, RefreshControl } from 'react-native'
 import _ from 'lodash'
 import ViewContainer from '../components/ViewContainer'
 import StatusBarBackground from '../components/StatusBarBackground'
@@ -37,9 +37,11 @@ class SongList extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       songs: ds.cloneWithRows([]),
+      refreshing: false
     }
     this._renderSongRow = this._renderSongRow.bind(this)
     this._navigateToSongPage = this._navigateToSongPage.bind(this)
+    this._onRefresh = this._onRefresh.bind(this)
   }
   componentDidMount () {
     if (this.props.ArtistId) {
@@ -74,6 +76,47 @@ class SongList extends Component {
       })
     }
   }
+  _onRefresh () {
+    this.setState({refreshing: true})
+    if (this.props.ArtistId) {
+      axios.get(`http://localhost:5050/songs/consumers/ByArtistId/${this.props.ArtistId}`)
+      .then((res) => {
+        this.setState({
+          songs: this.state.songs.cloneWithRows(res.data),
+          refreshing: false
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+        this.setState({refreshing: false})
+      })
+    } else if (this.props.AlbumId) {
+      axios.get(`http://localhost:5050/songs/consumers/ByAlbumId/${this.props.AlbumId}`)
+      .then((res) => {
+        this.setState({
+          songs: this.state.songs.cloneWithRows(res.data),
+          refreshing: false
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+        this.setState({refreshing: false})
+      })
+    } else {
+      axios.get(`http://localhost:5050/songs/consumers/`)
+      .then((res) => {
+        this.setState({
+          songs: this.state.songs.cloneWithRows(res.data),
+          refreshing: false
+        })
+      })
+      .catch((error) => {
+        console.log('axios error', error)
+        this.setState({refreshing: false})
+      })
+    }
+    console.log('refresh me')
+  }
   render () {
     return (
       <ViewContainer>
@@ -84,7 +127,14 @@ class SongList extends Component {
             style={Styles.SongListListView}
             dataSource={this.state.songs}
             renderRow={(song) => {return this._renderSongRow(song) }}
-            enableEmptySections={true} />
+            enableEmptySections={true}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+              />
+            }
+          />
         </View>
       </ViewContainer>
     )

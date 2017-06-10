@@ -34,10 +34,12 @@ class ArtistList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      artists: ds.cloneWithRows([])
+      artists: ds.cloneWithRows([]),
+      refreshing: false
     }
     this._renderArtistRow = this._renderArtistRow.bind(this)
     this._navigateToArtistPage = this._navigateToArtistPage.bind(this)
+    this._onRefresh = this._onRefresh.bind(this)
   }
   componentWillMount () {
     axios.get(`http://localhost:5050/artists/consumers/`)
@@ -48,6 +50,20 @@ class ArtistList extends Component {
     })
     .catch((error) => {
       console.log('axios error', error)
+    })
+  }
+  _onRefresh () {
+    this.setState({ refreshing: true})
+    axios.get(`http://localhost:5050/artists/consumers/`)
+    .then((res) => {
+      this.setState({
+        artists: this.state.artists.cloneWithRows(res.data),
+        refreshing: false
+      })
+    })
+    .catch((error) => {
+      console.log('axios error', error)
+      this.setState({ refreshing: false})
     })
   }
   render () {
