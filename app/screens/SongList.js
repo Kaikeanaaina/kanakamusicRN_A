@@ -44,8 +44,9 @@ class SongList extends Component {
     this._onRefresh = this._onRefresh.bind(this)
   }
   componentDidMount () {
+    console.log('first console log', this.state.songs)
     if (this.props.ArtistId) {
-      axios.get(`http://localhost:5050/songs/consumers/ByArtistId/${this.props.ArtistId}`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/songs/consumers/ByArtistId/${this.props.ArtistId}`)
       .then((res) => {
         this.setState({
           songs: this.state.songs.cloneWithRows(res.data)
@@ -55,7 +56,7 @@ class SongList extends Component {
         console.log('axios error', error)
       })
     } else if (this.props.AlbumId) {
-      axios.get(`http://localhost:5050/songs/consumers/ByAlbumId/${this.props.AlbumId}`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/#/songs/consumers/ByAlbumId/${this.props.AlbumId}`)
       .then((res) => {
         this.setState({
           songs: this.state.songs.cloneWithRows(res.data)
@@ -65,11 +66,14 @@ class SongList extends Component {
         console.log('axios error', error)
       })
     } else {
-      axios.get(`http://localhost:5050/songs/consumers/`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/songs/consumers/`)
       .then((res) => {
         this.setState({
           songs: this.state.songs.cloneWithRows(res.data)
         })
+
+        console.log('second',this.state.songs)
+
       })
       .catch((error) => {
         console.log('axios error', error)
@@ -79,7 +83,7 @@ class SongList extends Component {
   _onRefresh () {
     this.setState({refreshing: true})
     if (this.props.ArtistId) {
-      axios.get(`http://localhost:5050/songs/consumers/ByArtistId/${this.props.ArtistId}`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/songs/consumers/ByArtistId/${this.props.ArtistId}`)
       .then((res) => {
         this.setState({
           songs: this.state.songs.cloneWithRows(res.data),
@@ -91,7 +95,7 @@ class SongList extends Component {
         this.setState({refreshing: false})
       })
     } else if (this.props.AlbumId) {
-      axios.get(`http://localhost:5050/songs/consumers/ByAlbumId/${this.props.AlbumId}`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/songs/consumers/ByAlbumId/${this.props.AlbumId}`)
       .then((res) => {
         this.setState({
           songs: this.state.songs.cloneWithRows(res.data),
@@ -103,7 +107,7 @@ class SongList extends Component {
         this.setState({refreshing: false})
       })
     } else {
-      axios.get(`http://localhost:5050/songs/consumers/`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/songs/consumers/`)
       .then((res) => {
         this.setState({
           songs: this.state.songs.cloneWithRows(res.data),

@@ -42,7 +42,7 @@ class AlbumList extends Component {
   }
   componentDidMount () {
     if (this.props.ArtistId) {
-      axios.get(`http://localhost:5050/albums/consumers/ByArtistId/${this.props.ArtistId}`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/albums/consumers/ByArtistId/${this.props.ArtistId}`)
       .then((res) => {
         this.setState({
           albums: this.state.albums.cloneWithRows(res.data)
@@ -52,7 +52,7 @@ class AlbumList extends Component {
         console.log('axios error', error)
       })
     } else {
-      axios.get(`http://localhost:5050/albums/consumers/`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/albums/consumers/`)
       .then((res) => {
         this.setState({
           albums: this.state.albums.cloneWithRows(res.data)
@@ -66,7 +66,7 @@ class AlbumList extends Component {
   _onRefresh () {
     this.setState({refreshing: true})
     if (this.props.ArtistId) {
-      axios.get(`http://localhost:5050/albums/consumers/ByArtistId/${this.props.ArtistId}`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/albums/consumers/ByArtistId/${this.props.ArtistId}`)
       .then((res) => {
         this.setState({
           albums: this.state.albums.cloneWithRows(res.data),
@@ -78,7 +78,7 @@ class AlbumList extends Component {
         this.setState({refreshing: false})
       })
     } else {
-      axios.get(`http://localhost:5050/albums/consumers/`)
+      axios.get(`https://kanakamusicstaging.herokuapp.com/albums/consumers/`)
       .then((res) => {
         this.setState({
           albums: this.state.albums.cloneWithRows(res.data),

@@ -42,7 +42,7 @@ class ArtistList extends Component {
     this._onRefresh = this._onRefresh.bind(this)
   }
   componentWillMount () {
-    axios.get(`http://localhost:5050/artists/consumers/`)
+    axios.get(`https://kanakamusicstaging.herokuapp.com/artists/consumers/`)
     .then((res) => {
       this.setState({
         artists: this.state.artists.cloneWithRows(res.data)
@@ -54,7 +54,7 @@ class ArtistList extends Component {
   }
   _onRefresh () {
     this.setState({ refreshing: true})
-    axios.get(`http://localhost:5050/artists/consumers/`)
+    axios.get(`https://kanakamusicstaging.herokuapp.com/artists/consumers/`)
     .then((res) => {
       this.setState({
         artists: this.state.artists.cloneWithRows(res.data),
